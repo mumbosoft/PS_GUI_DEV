@@ -1,0 +1,28 @@
+Log-in Raspberry Pi, enter the command to extract jdk-8-linux-arm-vfp-hflt.tar.gz to /opt directory.
+$ sudo tar zxvf jdk-8-linux-arm-vfp-hflt.tar.gz -C /opt
+
+Set default java and javac to the new installed jdk8.
+$ sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0/bin/javac 1
+$ sudo update-alternatives --install /usr/bin/java java /opt/jdk1.8.0/bin/java 1
+
+$ sudo update-alternatives --config javac
+$ sudo update-alternatives --config java
+
+After all, verify with the commands with -verion option.
+$ java -version
+$ javac -version
+
+Also check which version root is running
+$ sudo java -version
+
+Install (If using raspbian Lite)
+$ sudo apt-get install libgtk-3-0
+else javafx won't work
+
+Download openJFX from (http://108.61.191.178/) and simply extract into existing java build like explained
+here: 
+$ sudo unzip /home/pi/downloads/openjfx-8u60-sdk-overlay-linux-armv6hf.zip -d /opt/jdk1.8.0_101
+
+Dont forget to change the "memory split" under the advanced-tab in:
+$ sudo raspi-config
+128Mb in gbu memory aught to do it.

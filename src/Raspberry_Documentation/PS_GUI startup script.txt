@@ -1,0 +1,36 @@
+To create a shellscript that will execute when booting to the console, 
+do the following:
+
+create a file named psGuiAutoStart in /etc/init.d
+$ sudo nano /etc/init.d/psGuiAutoStart
+
+once the file is opened, enter the following:
+
+########################################################
+#!/bin/bash
+######################################################## 
+### BEGIN INIT INFO
+# Provides:          psGuiAutoStart
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: dovecot
+# Description:       dovecot pop & imap daemon
+### END INIT INFO
+
+echo "Starting PS_GUI ...\n"
+echo "raspberry" | sudo java -jar /home/pi/NetBeansProjects/PS_GUI_DEV/dist/PS_GUI_DEV.jar
+echo "\nPS_GUI was shut down\n"
+exit 0
+#########################################################
+
+exit and save the file.
+make the file runnable:
+$ sudo chmod 755 psGuiAutoStart
+
+register the file to start at boot:
+sudo update-rc.d psGuiAutoStart defaults
+
+now it should work.
+
