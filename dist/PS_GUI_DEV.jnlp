@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PS_GUI_DEV.jar" size="59518" download="eager" />
+    <jar href="PS_GUI_DEV.jar" size="65607" download="eager" />
     <jar href="lib/cglib-2.2.jar" size="278385" download="eager" />
     <jar href="lib/mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
     <jar href="lib/org-apache-commons-logging.jar" size="60641" download="eager" />

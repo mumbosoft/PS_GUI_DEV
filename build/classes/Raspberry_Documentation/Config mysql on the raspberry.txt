@@ -1,0 +1,23 @@
+
+
+Install mysql-server:
+$ sudo apt-get install mysql-server
+
+To configure remote access to the server 'root' follow these steps:
+
+$ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+$ FLUSH PRIVILEGES;
+And then find the following line and comment it out in your my.cnf file, which usually lives on 
+/etc/mysql/my.cnf 
+on Unix/OSX systems. If it's a Windows system, you can find it in the MySQL 
+installation directory, usually something like 
+C:\Program Files\MySQL\MySQL Server 5.5\ and the filename will be my.ini.
+
+Change line
+ bind-address = 127.0.0.1
+to
+ #bind-address = 127.0.0.1
+And restart the MySQL server for the changes to take effect.
+
+to restart server: 
+$ /etc/init.d/mysqld restart

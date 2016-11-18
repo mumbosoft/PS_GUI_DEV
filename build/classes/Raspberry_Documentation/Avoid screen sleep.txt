@@ -1,0 +1,14 @@
+
+No matter what I do, I've relaized that when I type
+$ cat /sys/module/kernel/parameters/consoleblank
+to console I get
+600
+
+Which means that the screen will blank after 10 minutes.
+To avoid this you have to enter:
+$ sudo nano /boot/cmdline.txt
+and add 
+$ consoleblank=0
+right before 
+$ rootwait
+

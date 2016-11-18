@@ -181,8 +181,7 @@ public class PS_GUIFxmlController implements Initializable {
                         }
 
                         //Sign out all employees by midnight
-                        if (time.get(Calendar.SECOND) + time.get(Calendar.MINUTE)
-                                + time.get(Calendar.HOUR_OF_DAY) == 0) {
+                        if (time.get(Calendar.MINUTE) == 58 && time.get(Calendar.HOUR_OF_DAY) == 23) {
                             List<RFID> list = empTemp.getAllSignedIn();
                             for (RFID rfid : list) {
                                 try {
