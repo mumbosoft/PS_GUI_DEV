@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PS_GUI_DEV.jar" size="65607" download="eager" />
+    <jar href="PS_GUI_DEV.jar" size="65909" download="eager" />
     <jar href="lib/cglib-2.2.jar" size="278385" download="eager" />
     <jar href="lib/mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
     <jar href="lib/org-apache-commons-logging.jar" size="60641" download="eager" />
@@ -39,7 +39,9 @@
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="ps_gui.Startup"  name="PS_GUI_DEV" >
-    <fx:param name="-Dcom.sun.javafx.virtualKeyboard" value="none"/>
+    <fx:param name="Dcom.sun.javafx.isEmbedded" value="true"/>
+    <fx:param name="Dcom.sun.javafx.touch" value="true"/>
+    <fx:param name="Dcom.sun.javafx.virtualKeyboard" value="none"/>
   </jfx:javafx-desc>
   <update check="always"/>
 </jnlp>

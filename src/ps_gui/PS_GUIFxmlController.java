@@ -51,6 +51,8 @@ public class PS_GUIFxmlController implements Initializable {
     static int cycCnt = 0;
     static int cycCnt2 = 0;
     
+    static boolean signedOutForTheDay = false;
+    
     //Screensaver related objects.
     private int inactivityTime = 0;             //seconds without screensaver.
     private final int screenSaveTime = 30;
@@ -151,6 +153,14 @@ public class PS_GUIFxmlController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Say wich version
+        System.out.println("THIS IS THE FINAL RELEASE\n"
+                + "CREATED BY:\n "
+                + "ALBIN HJÄLMÅS\n"
+                + "PATRICK KARLSSON\n"
+                + "EMIL JOHANSSON <3\n"
+                + "@MumboSoft");
+        
         //Set up connection to database
         empTemp = new PSJDBCTemplate();
 
@@ -180,8 +190,14 @@ public class PS_GUIFxmlController implements Initializable {
                             rfidTextField.requestFocus();
                         }
 
-                        //Sign out all employees by midnight
-                        if (time.get(Calendar.MINUTE) == 58 && time.get(Calendar.HOUR_OF_DAY) == 23) {
+                        //Sign out all employees before midnight
+                        if (time.get(Calendar.HOUR_OF_DAY) >= 23 && 
+                                time.get(Calendar.MINUTE) >= 50 &&
+                                !signedOutForTheDay) {
+                            
+                            //Set this variabel to avoid running through the loop twice.
+                            signedOutForTheDay = true;
+                            
                             List<RFID> list = empTemp.getAllSignedIn();
                             for (RFID rfid : list) {
                                 try {
@@ -190,6 +206,11 @@ public class PS_GUIFxmlController implements Initializable {
                                 } catch (SignedOutException ex) {
                                 }
                             }
+                        }
+                        
+                        //Reset signedOutForTheDay variable
+                        if (time.get(Calendar.HOUR_OF_DAY) <= 1 && signedOutForTheDay) {
+                            signedOutForTheDay = false;
                         }
                         
                         //count seconds of screen saver off-state without activity
